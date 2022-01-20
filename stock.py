@@ -27,7 +27,7 @@ class stock:
         self. quantity = quantity
         with open('stock.txt') as fo:
             for line in fo:
-                if line.split('#')[0] == removeRocketName:
+                if line.split('#')[0] == self.name:
                     a = int(line.split('#')[2])
                     newQuantity = a - removeRocketQuantity
                     line.split('#')[2] = str(newQuantity)
