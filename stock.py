@@ -27,14 +27,20 @@ class stock:
     name: str
     payloadPrice: float
     quantity: int
-    def add_product(self, name, payloadPrice, quantity):
+    def add_product(self, name=0, payloadPrice=0, quantity=0):
         self.name = name
         self.payloadPrice = payloadPrice
         self.quantity = quantity
+        listOfProducts.append()
     #def show_products(self):
         
     #def buy_item(self, quantity):
-add_product()
+new_product = stock()
+new_product.name = str(input('Digite o nome do foguete: '))
+new_product.payloadPrice = float(input('Digite o preço da payload'))
+new_product.quantity = int(input('Qunatidade disponível do produto'))
+
+
 
 
 
