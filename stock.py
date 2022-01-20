@@ -30,7 +30,7 @@ class stock:
                 if line.split('#')[0] == removeRocketName:
                     a = int(line.split('#')[2])
                     newQuantity = a - removeRocketQuantity
-                    line.write(f'{self.name}#{self.payloadPrice}#{newQuantity}')
+                    line.split('#')[2] = str(newQuantity)
                 
 
 
