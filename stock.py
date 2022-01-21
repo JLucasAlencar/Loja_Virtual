@@ -86,9 +86,10 @@ with open('stock.txt') as fo:
 a = int(line.split('#')[2])
 print(a+1)
 '''
-
+'''
 show = stock()
 show.show_products()
+'''
 
 
 
