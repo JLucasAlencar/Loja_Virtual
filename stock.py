@@ -11,9 +11,7 @@ from dataclasses import dataclass
 
 @dataclass
 class stock:
-    name: str = ''
-    payloadPrice: float = 0
-    quantity: int = 0
+    
     #Add a new product to stock
     def add_product(self, name=0, payloadPrice=0, quantity=0):
         self.name = name
