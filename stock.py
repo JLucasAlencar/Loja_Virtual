@@ -49,6 +49,7 @@ class stock:
                 quantity = line.split('#')[2]
                 print(f'{products: <15}R${price: <15}{quantity}')
                 print('--' * 21)
+    #HÁ UM PROBLEMA: OS ITENS ESTÃO FICANDO EM QUANTIDADE NEGATIVA NO STOCK!
 
     
 '''

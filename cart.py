@@ -12,24 +12,32 @@ class cart:
 
         buy = str(input('Foguete em que se deseja lançar: '))
         while True:
-            quantity = int(input('Quantidade de lançamentos desejada nesse foguete: '))
-            if quantity > 0:
-                break
-            else:
-                print('ERRO: A quantidade deve ser MAIOR que 0!')
+            try: 
+                quantity = int(input('Quantidade de lançamentos desejada nesse foguete: '))
+                if quantity > 0:
+                    break
+                else:
+                    print('ERRO: A quantidade deve ser MAIOR que 0!')
+            except:
+                print('Digite um número inteiro!')
+                pass
         if buy in rockets:
-            print(f'{buy} foi adicionado ao carrinho!')
             with open('stock.txt') as doc:
                 for line in doc:
                     if line.split('#')[0] == buy:
-                        totalCost += quantity*float(line.split('#')[1])
+                        if int(line.split('#')[2]) - quantity >= 0:
+                            totalCost += quantity*float(line.split('#')[1])
+                            stock().remove_product(buy, 0, quantity)
+                            print(f'{buy} foi adicionado ao carrinho!')
+                            print(f'O custo total é de RS{totalCost:.2f}.')
+                        else:
+                            print('Não temos mais essa quantidade disponível em nosso estoque')
+                    else:
+                        pass     
         else:
             print('ERRO: Este item não está disponível!')
-        print(totalCost)
-        #AGORA FALTA REMOVER O ITEM DE STOCK.TXT!   
-
-
-
+        #CRIAR FUNÇÃO DE MOSTRAR CARRINHO
+          
 cart().add_to_cart()
 
 
