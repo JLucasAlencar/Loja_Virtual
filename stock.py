@@ -13,7 +13,7 @@ from dataclasses import dataclass
 class stock:
     
     #Add a new product to stock
-    def add_product(self, name=0, payloadPrice=0, quantity=0):
+    def add_product(self, name=0, payloadPrice=0, quantity=0): #PROBLEMA AQUI!: dá pra acrecentar produtos repetidos!
         self.name = name
         self.payloadPrice = payloadPrice
         self.quantity = quantity
@@ -85,10 +85,10 @@ with open('stock.txt') as fo:
 a = int(line.split('#')[2])
 print(a+1)
 '''
-'''
+
 show = stock()
 show.show_products()
-'''
+
 
 
 
