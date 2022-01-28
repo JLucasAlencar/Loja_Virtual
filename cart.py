@@ -26,12 +26,12 @@ class cart:
                 for line in doc:
                     if line.split('#')[0] == buy:
                         if int(line.split('#')[2]) - quantity >= 0:
-                            totalCost += quantity*float(line.split('#')[1])
+                            totalCost = float(line.split('#')[1])
                             stock().remove_product(buy, 0, quantity)
                             with open('cart.txt', 'r') as dom:
                                 if buy not in dom.read():
                                     with open('cart.txt', 'a') as dom:
-                                        dom.write(f'{buy}#{quantity}\n')
+                                        dom.write(f'{buy}#{quantity}#{totalCost}\n')
                                 else:
                                     counter = 0
                                     with open('cart.txt') as dom:
@@ -40,7 +40,7 @@ class cart:
                                                 add = str(quantity + int(line.split('#')[1]))
                                                 with open('cart.txt', 'r') as bo:
                                                     listOfLines = bo.readlines()
-                                                    listOfLines[counter] = f'{buy}#{add}\n'
+                                                    listOfLines[counter] = f'{buy}#{add}#{totalCost}\n'
                                                 with open('cart.txt', 'w') as bo:
                                                     bo.writelines(listOfLines)         
                                             else:
@@ -58,15 +58,20 @@ class cart:
 
     def show_cart(self):
         print('==' * 21)
-        print('CARRINHO')
+        print(f'{"CARRINHO":^40}')
+        print('==' * 21)
+        print('Produtos', ' '*5, 'No carrinho', ' '*2, 'Custo de um')
         print('==' * 21)
         with open('cart.txt', 'r') as car:
+            tCost = 0
             for line in car:
                 prod = line.split('#')[0]
                 quant = line.split('#')[1]
-                print(f'{prod: <15}{quant: <15}')
+                price = line.split('#')[2]
+                tCost += float(line.split('#')[2]) * int(quant)
+                print(f'{prod: <15}{quant: <15}{price}')
                 print('--' * 21)
-        #ADICIONAR CUSTO TOTAL DA COMPRA NO TXT E CHAMÁ-LO
+            print(f'Preço total: {tCost}')
             
 
 cart().add_to_cart()

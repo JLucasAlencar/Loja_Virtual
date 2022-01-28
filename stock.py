@@ -41,6 +41,8 @@ class stock:
     def show_products(self):
         with open('stock.txt') as co:
             print('==' * 21)
+            print(f'{"STOCK":^40}')
+            print('==' * 21)
             print('Produtos', ' '*5, 'Preço', ' '*10, 'Quantidade')
             print('==' * 21)
             for line in co:
