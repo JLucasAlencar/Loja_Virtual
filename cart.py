@@ -29,7 +29,7 @@ class cart:
                             totalCost = float(line.split('#')[1])
                             stock().remove_product(buy, 0, quantity)
                             with open('cart.txt', 'r') as dom:
-                                if buy not in dom.read():
+                                if buy not in dom.read():#
                                     with open('cart.txt', 'a') as dom:
                                         dom.write(f'{buy}#{quantity}#{totalCost}\n')
                                 else:
@@ -45,7 +45,6 @@ class cart:
                                                     bo.writelines(listOfLines)         
                                             else:
                                                 counter += 1
-                                    pass
                                     
                             print(f'O custo dessa compra é de RS{totalCost:.2f}.')
                         else:

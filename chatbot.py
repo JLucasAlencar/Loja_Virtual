@@ -24,4 +24,6 @@ while True:
     except:
         print('ERRO')
     
+    #Finalizar funcionamento do chatbot!
+    
 
