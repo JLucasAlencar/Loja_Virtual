@@ -17,9 +17,13 @@ class stock:
         self.payloadPrice = payloadPrice
         self.quantity = quantity
         with open('stock.txt', 'r') as add:
-            if self.name not in add.read():
-                with open('stock.txt', 'a'):
-                    add.write(f'{self.name}#{self.payloadPrice}#{self.quantity}' + '\n')
+            listOfRockets = []
+            for line in add:
+                listOfRockets.append(line.split('#')[0])
+            if self.name not in listOfRockets: 
+                with open('stock.txt', 'a') as add:
+                    add.write(f'\n{self.name}#{self.payloadPrice:.2f}#{self.quantity}')
+                    print('Operação realizada com sucesso!')
             else:
                 print('Esse item já está no stock!')
 
@@ -37,24 +41,24 @@ class stock:
                         listOfLines[counterInc] = f'{self.name}#{sp}#{increase}\n'
                     with open('stock.txt', 'w') as bo:
                         bo.writelines(listOfLines)
+                        print('Operação realizada com sucesso!')
                 else:
                     counterInc += 1
 
     #Remove a product
-    def remove_product(self, name=0, payloadPrice=0, quantity=0):
+    def remove_product(self, name=0, quantity=0):
         self.name = name
-        self.payloadPrice = payloadPrice
         self.quantity = quantity
         with open('stock.txt') as fo:
             counterRem = 0
             for line in fo:
                 if line.split('#')[0] == self.name:
-                    self.payloadPrice = line.split('#')[1]
                     a = int(line.split('#')[2]) - quantity
+                    plP = line.split('#')[1]
                     if a >= 0:
                         with open('stock.txt', 'r') as bo:
                             listOfLines = bo.readlines()
-                            listOfLines[counterRem] = f'{self.name}#{self.payloadPrice}#{a}\n'
+                            listOfLines[counterRem] = f'{self.name}#{plP}#{a}\n'
                         with open('stock.txt', 'w') as bo:
                             bo.writelines(listOfLines)
                     else:
@@ -113,7 +117,7 @@ show = stock()
 show.show_products()
 '''
 
-stock().increase_quantity('soyuz', 100)
+#stock().increase_quantity('soyuz', 100)
 
 
 

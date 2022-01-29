@@ -32,6 +32,7 @@ class cart:
                                 if buy not in dom.read():#
                                     with open('cart.txt', 'a') as dom:
                                         dom.write(f'{buy}#{quantity}#{totalCost}\n')
+                                    print(f'Lançamento no {buy} foi adicionado com sucesso!')
                                 else:
                                     counter = 0
                                     with open('cart.txt') as dom:
@@ -45,8 +46,6 @@ class cart:
                                                     bo.writelines(listOfLines)         
                                             else:
                                                 counter += 1
-                                    
-                            print(f'O custo dessa compra é de RS{totalCost:.2f}.')
                         else:
                             print('Não temos mais essa quantidade disponível em nosso estoque')
                     else:
@@ -72,10 +71,10 @@ class cart:
                 print('--' * 21)
             print(f'Preço total: {tCost}')
             
-
+'''
 cart().add_to_cart()
 cart().show_cart()
-
+'''
 
 
 
