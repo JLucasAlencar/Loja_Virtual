@@ -27,32 +27,41 @@ while True:
                     print('==-==' * 16)
                     print('[1] - Adicionar foguete ao estoque\n[2] - Aumentar quantidade de lançamentos para um foguete\n[3] - Remover quantidade de lançamentos de um foguete\n[0] - Sair da área do administrador')
                     print('==-==' * 16)
-                    choice4 = int(input('Sua escolha: '))
-                    if choice4 <= 3 and choice4 >= 0:
-                        if choice4 == 1:
-                            print(f'{"Adicionar foguete":^40}')
-                            print('==' * 21)
-                            product = str(input('Digite o nome do novo foguete: '))
-                            price = float(input('Digite o preço da payload: '))
-                            quantity = int(input('Digite a quantidade que ficará disponível em estoque: '))
-                            stock().add_product(product, price, abs(quantity))
-                        elif choice4 == 2:
-                            print(f'{"Aumentar quantidade":^40}')
-                            print('==' * 21)
-                            product = str(input('Digite o nome do foguete: '))
-                            quantity = int(input('Digite em quanto quer aumentar: '))
-                            stock().increase_quantity(product, abs(quantity))
-                        elif choice4 == 3:
-                            print(f'{"Diminuir quantidade":^40}')
-                            print('==' * 21)
-                            product = str(input('Digite o nome do foguete: '))
-                            quantity = int(input('Digite em quanto quer reduzir: '))
-                            stock().remove_product(product, abs(quantity))
-                        elif choice4 == 0:
-                            break
+                    try:
+                        choice4 = int(input('Sua escolha: '))
+                        if choice4 <= 3 and choice4 >= 0:
+                            if choice4 == 1:
+                                print(f'{"Adicionar foguete":^40}')
+                                print('==' * 21)
+                                try:
+                                    product = str(input('Digite o nome do novo foguete: ')).replace(' ', '').lower()
+                                    price = float(input('Digite o preço da payload: '))
+                                    quantity = int(input('Digite a quantidade que ficará disponível em estoque: '))
+                                except (ValueError, TypeError, KeyboardInterrupt):
+                                    print('ERRO: Houve um problema com os tipos de dados que você digitou!')
+                                else:
+                                    stock().add_product(product, price, abs(quantity))
+                            elif choice4 == 2:
+                                print(f'{"Aumentar quantidade":^40}')
+                                print('==' * 21)
+                                product = str(input('Digite o nome do foguete: '))
+                                quantity = int(input('Digite em quanto quer aumentar: '))
+                                stock().increase_quantity(product, abs(quantity))
+                            elif choice4 == 3:
+                                print(f'{"Diminuir quantidade":^40}')
+                                print('==' * 21)
+                                product = str(input('Digite o nome do foguete: '))
+                                quantity = int(input('Digite em quanto quer reduzir: '))
+                                stock().remove_product(product, abs(quantity))
+                            elif choice4 == 0:
+                                break
+                        else:
+                            print('ERRO: Você deve escolher um dos números listados!')
+                    except (ValueError, TypeError):
+                        print('ERRO: Houve um problema com os tipos de dados que você digitou!')
+                    except (KeyboardInterrupt):
+                        print('ERRO: O usuário não informou dados.')
 
-                    else:
-                        print('ERRO: Você deve escolher um dos números listados!')
             elif choice == 0:
                 with open('cart.txt', 'w') as era:
                     era.write('')
@@ -63,9 +72,11 @@ while True:
                 pass
         else:
             print('ERRO: Você deve escolher um dos números listados!')
-    except:
-        print('ERRO')
+    except (ValueError, TypeError):
+        print('ERRO: Houve um problema com os tipos de dados que você digitou!')
+    except KeyboardInterrupt:
+        print('ERRO: O usuário não informou dados.')
 
-        #1 - CORRIGIR BUGS!
+        #1 - CORRIGIR BUGS DA ÁREA DO ADMINISTRADOR!
         #2 - COLOCAR CORES NO TERMINAL!
 
