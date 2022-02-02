@@ -1,17 +1,14 @@
-from dataclasses import dataclass
 
 '''
-    The products are payloads of various rockets in history.
+    Os produtos são payloads de diferentes foguetes da história.
 
-    Example
+    Exemplo
     name: Saturn V
     Payload price: R$2000000000,00
     Quantity: 10
 '''
-
-@dataclass
 class stock:
-    #Add a new product to stock
+    #Adiciona um novo produto ao stock.txt
     def add_product(self, name=0, payloadPrice=0, quantity=0):
         self.name = name
         self.payloadPrice = payloadPrice
@@ -27,25 +24,29 @@ class stock:
             else:
                 print('\033[1;31mEsse item já está no estoque!\033[m')
 
+    #Aumenta a quantidade de um produto já existento no stock.txt
     def increase_quantity(self, name=0, quantity=0):
         self.name = name
         self.quantity = quantity
         with open('stock.txt') as inc:
             counterInc = 0
+            listOfRockets = []
             for line in inc:
-                if line.split('#')[0] == self.name:
-                    increase = int(line.split('#')[2]) + self.quantity
-                    with open('stock.txt', 'r') as bo:
-                        sp = line.split('#')[1]
-                        listOfLines = bo.readlines()
-                        listOfLines[counterInc] = f'{self.name}#{sp}#{increase}\n'
-                    with open('stock.txt', 'w') as bo:
-                        bo.writelines(listOfLines)
-                        print('Operação realizada com \033[1;32msucesso!\033[m')
-                else:
-                    counterInc += 1
+                listOfRockets.append(line.split('#')[0])
+            if line.split('#')[0] == self.name and self.name in listOfRockets:
+                increase = int(line.split('#')[2]) + self.quantity
+                with open('stock.txt', 'r') as bo:
+                    sp = line.split('#')[1]
+                    listOfLines = bo.readlines()
+                    listOfLines[counterInc] = f'{self.name}#{sp}#{increase}\n'
+                with open('stock.txt', 'w') as bo:
+                    bo.writelines(listOfLines)
+                    print('Operação realizada com \033[1;32msucesso!\033[m')
+            else:
+                print('\033[1;31mEste item não se encontra no estoque!\033[m')
+                counterInc += 1
 
-    #Remove a product
+    #Remove a terceira coluna(quantidade disponível do produto) do foguete escolhido no arquivo stock.txt
     def remove_product(self, name=0, quantity=0):
         self.name = name
         self.quantity = quantity
@@ -70,10 +71,12 @@ class stock:
                                     bo.writelines(listOfLines)
                                     print('Operação realizada com \033[1;32msucesso!\033[m')
                             else:
-                                print('ERRO: Não há quantidade suficiente do produto no estoque!')
+                                print('\033[1;31mERRO: Não há quantidade suficiente do produto no estoque!\033[m')
 
                         else:
                             counterRem += 1
+                            
+    #Mostra os dados do stock.txt
     def show_products(self):
         with open('stock.txt') as co:
             print('==' * 21)

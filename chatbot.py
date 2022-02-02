@@ -1,8 +1,10 @@
 from cart import *
 from stock import *
 
+#O código do chatbot faz o programa funcionar chamando os arquivos cart.py e stock.py
 print(f'\033[1;36m{"==-==" * 16}')
 print('\033[1;32mOlá! Bem vindo(a) à loja de payloads!\nAqui você pode escolher o melhor foguete para o lançamento de sua carga!')
+
 while True:
     print(f'\033[1;36m{"==-==" * 16}') 
     print('\033[1;32mO que você quer fazer agora?')

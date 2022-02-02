@@ -1,9 +1,8 @@
-from dataclasses import dataclass
 from stock import *
 
-@dataclass
 class cart:
-    def add_to_cart(self): #Add an item to cart and removes it from "stock.txt"
+    #Adiciona um item ao cart.txt e reduz sua quantidade no stock.txt
+    def add_to_cart(self): 
         totalCost = 0
         rockets = []
         with open('stock.txt') as fo:
@@ -19,9 +18,9 @@ class cart:
                         if quantity > 0:
                             break
                         else:
-                            print('\033[1;31mERRO: A quantidade deve ser MAIOR que 0!\033[m')
+                            print('\033[1;31mERRO: A quantidade deve ser MAIOR que 0!\033[1;33m')
                     except:
-                        print('\033[1;31mDigite um número inteiro!\033[m')
+                        print('\033[1;31mDigite um número inteiro!\033[1;33m')
                         pass
                 break
             elif buy == '0':
@@ -38,8 +37,8 @@ class cart:
                         with open('cart.txt', 'r') as dom:
                             if buy not in dom.read():#
                                 with open('cart.txt', 'a') as dom:
-                                    dom.write(f'{buy}#{quantity}#{totalCost}\n')
-                                print(f'\033[1;33mLançamento no \033[4m{buy}\033[m \033[1;33mfoi \033[1;32madicionado com sucesso!\033[1;33m')
+                                    dom.write(f'{buy}#{quantity}#{totalCost:.2f}\n')
+                                print(f'\033[1;33mLançamento no \033[4m{buy}\033[m \033[1;33mfoi \033[1;32mconfirmado!\033[1;33m')
                             else:
                                 counter = 0
                                 with open('cart.txt') as dom:
@@ -57,14 +56,13 @@ class cart:
                         print('\033[1;31mInfelizmente não temos mais essa quantidade disponível em nosso estoque.\033[1;33m')
                 else:
                     pass     
-        
-            
-
+    
+    #Mostra os dados do arquivo cart.txt
     def show_cart(self):
         print('==' * 21)
         print(f'{"CARRINHO":^40}')
         print('==' * 21)
-        print('Produtos', ' '*5, 'No carrinho', ' '*2, 'Custo de um')
+        print('Produtos', ' '*2, 'No carrinho', ' '*2, 'Custo de um')
         print('==' * 21)
         with open('cart.txt', 'r') as car:
             tCost = 0
@@ -73,7 +71,7 @@ class cart:
                 quant = line.split('#')[1]
                 price = line.split('#')[2]
                 tCost += float(line.split('#')[2]) * int(quant)
-                print(f'{prod: <15}{quant: <15}{price}')
+                print(f'{prod: <16}{quant: <12}R${price}')
                 print('--' * 21)
             print(f'Preço total: {tCost}')
             
