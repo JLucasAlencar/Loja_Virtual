@@ -28,6 +28,7 @@ while True:
             elif choice == 4:
                 print(f'\033[1;34m{"==-==" * 16}')
                 print(f'\033[1;35m{"ÁREA DO ADMINISTRADOR":^80}')
+
                 while True:
                     print(f'\033[1;34m{"==-==" * 16}')
                     print('\033[1;35m[1] - Adicionar foguete ao estoque\n[2] - Aumentar quantidade de lançamentos para um foguete\n[3] - Remover quantidade de lançamentos de um foguete\n[0] - Sair da área do administrador')
@@ -43,6 +44,7 @@ while True:
                                 price = float(input('Digite o preço da payload: '))
                                 quantity = int(input('Digite a quantidade que ficará disponível em estoque: '))
                                 stock().add_product(product, price, abs(quantity))
+
                             elif choice4 == 2:
                                 print('==' * 21)
                                 print(f'{"Aumentar quantidade":^40}')
@@ -50,6 +52,7 @@ while True:
                                 product = str(input('Digite o nome do foguete: ')).replace(' ', '').lower()
                                 quantity = int(input('Digite em quanto quer aumentar: '))
                                 stock().increase_quantity(product, abs(quantity))
+
                             elif choice4 == 3:
                                 print('==' * 21)
                                 print(f'{"Diminuir quantidade":^40}')
@@ -57,6 +60,7 @@ while True:
                                 product = str(input('Digite o nome do foguete: ')).replace(' ', '').lower()
                                 quantity = int(input('Digite em quanto quer reduzir: '))
                                 stock().remove_product(product, abs(quantity))
+
                             elif choice4 == 0:
                                 break
                         else:
@@ -67,11 +71,13 @@ while True:
                         print('\033[1;31mERRO: O usuário não informou dados.')
 
             elif choice == 0:
+                cart().show_cart()
                 with open('cart.txt', 'w') as era:
                     era.write('')
                 print(f'\033[1;36m{"==-==" * 16}')
                 print('\033[1;32mVolte sempre!\033[m')
                 break
+            
             else:
                 pass
         else:

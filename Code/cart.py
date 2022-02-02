@@ -73,7 +73,7 @@ class cart:
                 tCost += float(line.split('#')[2]) * int(quant)
                 print(f'{prod: <16}{quant: <12}R${price}')
                 print('--' * 21)
-            print(f'Preço total: {tCost}')
+            print(f'Preço total: R${tCost:.2f}')
             
 
 

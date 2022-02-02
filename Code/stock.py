@@ -1,6 +1,7 @@
 
 '''
     Os produtos são payloads de diferentes foguetes da história.
+    OBS: Os preços são fictícios.
 
     Exemplo
     name: Saturn V
@@ -72,7 +73,6 @@ class stock:
                                     print('Operação realizada com \033[1;32msucesso!\033[m')
                             else:
                                 print('\033[1;31mERRO: Não há quantidade suficiente do produto no estoque!\033[m')
-
                         else:
                             counterRem += 1
                             
