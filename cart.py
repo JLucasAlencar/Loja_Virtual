@@ -27,7 +27,7 @@ class cart:
             elif buy == '0':
                 break
             else: 
-                print('ERRO: Este item não está disponível!(Digite 0 para voltar ao menu)')
+                print('\033[1;31mERRO: Este item não está disponível!(Digite 0 para voltar ao menu)\033[1;33m')
         
         with open('stock.txt') as doc:
             for line in doc:
@@ -39,7 +39,7 @@ class cart:
                             if buy not in dom.read():#
                                 with open('cart.txt', 'a') as dom:
                                     dom.write(f'{buy}#{quantity}#{totalCost}\n')
-                                print(f'Lançamento no {buy} foi adicionado com sucesso!')
+                                print(f'Lançamento no \033[4m{buy}\033[m \033[1;33mfoi \033[1;32madicionado com sucesso!\033[m')
                             else:
                                 counter = 0
                                 with open('cart.txt') as dom:
@@ -54,7 +54,7 @@ class cart:
                                         else:
                                             counter += 1
                     else:
-                        print('Não temos mais essa quantidade disponível em nosso estoque')
+                        print('\033[1;31mInfelizmente não temos mais essa quantidade disponível em nosso estoque.\033[1;33m')
                 else:
                     pass     
         
@@ -77,10 +77,7 @@ class cart:
                 print('--' * 21)
             print(f'Preço total: {tCost}')
             
-'''
-cart().add_to_cart()
-cart().show_cart()
-'''
+
 
 
 
