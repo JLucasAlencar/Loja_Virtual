@@ -19,9 +19,9 @@ class cart:
                         if quantity > 0:
                             break
                         else:
-                            print('ERRO: A quantidade deve ser MAIOR que 0!')
+                            print('\033[1;31mERRO: A quantidade deve ser MAIOR que 0!\033[m')
                     except:
-                        print('Digite um número inteiro!')
+                        print('\033[1;31mDigite um número inteiro!\033[m')
                         pass
                 break
             elif buy == '0':
@@ -39,7 +39,7 @@ class cart:
                             if buy not in dom.read():#
                                 with open('cart.txt', 'a') as dom:
                                     dom.write(f'{buy}#{quantity}#{totalCost}\n')
-                                print(f'Lançamento no \033[4m{buy}\033[m \033[1;33mfoi \033[1;32madicionado com sucesso!\033[m')
+                                print(f'\033[1;33mLançamento no \033[4m{buy}\033[m \033[1;33mfoi \033[1;32madicionado com sucesso!\033[1;33m')
                             else:
                                 counter = 0
                                 with open('cart.txt') as dom:
